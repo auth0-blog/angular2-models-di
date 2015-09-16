@@ -1,0 +1,9 @@
+<form role="form" #form="form" (ng-submit)="user.create(form.value).save()">
+  <input type="text" placeholder="Enter your name" ng-control="name">
+  <input type="text" placeholder="Enter your email" ng-control="email">
+  <h3>Languages</h3>
+  <input type="checkbox" ng-control="javascript">JavaScript
+  <input type="checkbox" ng-control="ruby">Ruby
+  <input type="checkbox" ng-control="php">PHP
+  <button>Submit</button>
+</form>
