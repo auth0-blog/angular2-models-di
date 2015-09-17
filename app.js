@@ -15,12 +15,18 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 var angular2_1 = require('angular2/angular2');
 var di_1 = require('angular2/di');
-var user_1 = require('models/user');
 var userFactory_1 = require('models/userFactory');
 var UsersAppComponent = (function () {
-    function UsersAppComponent(User) {
-        this.user = User;
+    function UsersAppComponent(UserFactory) {
+        this.UserFactory = UserFactory;
     }
+    UsersAppComponent.prototype.submit = function (userInfo) {
+        this.user = this.UserFactory.create(userInfo);
+        this.user.save();
+    };
+    UsersAppComponent.prototype.getUser = function () {
+        this.user.get();
+    };
     UsersAppComponent = __decorate([
         angular2_1.Component({
             selector: 'users'
@@ -29,9 +35,9 @@ var UsersAppComponent = (function () {
             directives: [angular2_1.FORM_DIRECTIVES],
             templateUrl: 'userTemplate.html'
         }),
-        __param(0, di_1.Inject(user_1.User)), 
+        __param(0, di_1.Inject(userFactory_1.UserFactory)), 
         __metadata('design:paramtypes', [Object])
     ], UsersAppComponent);
     return UsersAppComponent;
 })();
-angular2_1.bootstrap(UsersAppComponent, [angular2_1.bind(user_1.User).toClass(userFactory_1.UserFactory)]);
+angular2_1.bootstrap(UsersAppComponent, [userFactory_1.UserFactory]);

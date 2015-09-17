@@ -6,13 +6,22 @@ var User = (function () {
     }
     User.prototype.calculateRating = function (userInfo) {
         var rating = 0;
-        userInfo.javascript ? rating += 30 : rating;
-        userInfo.ruby ? rating += 20 : rating;
-        userInfo.php ? rating += 50 : rating;
+        if (userInfo.javascript) {
+            rating += 30;
+        }
+        if (userInfo.ruby) {
+            rating += 20;
+        }
+        if (userInfo.php) {
+            rating += 50;
+        }
         return rating;
     };
     User.prototype.save = function () {
         console.log(this.name, this.email, this.rating);
+    };
+    User.prototype.get = function () {
+        console.log(this.name);
     };
     return User;
 })();

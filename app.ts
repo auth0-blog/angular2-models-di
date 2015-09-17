@@ -16,10 +16,18 @@ import {UserFactory} from 'models/userFactory';
 
 class UsersAppComponent {
   
-  constructor(@Inject(User) User) {  
-    this.user = User;
+  constructor(@Inject(UserFactory) UserFactory) {  
+    this.UserFactory = UserFactory;
+  }
+
+  submit(userInfo) {
+    this.user = this.UserFactory.create(userInfo);
+    this.user.save();
+  }
+
+  getUser() {
+    this.user.get();
   }
 }
 
-// The UserFactory can be bound to another name, in this case User
-bootstrap(UsersAppComponent, [bind(User).toClass(UserFactory)]);
+bootstrap(UsersAppComponent, [UserFactory]);

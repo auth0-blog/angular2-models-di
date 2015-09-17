@@ -1,4 +1,4 @@
-<form role="form" #form="form" (ng-submit)="user.create(form.value).save()">
+<form role="form" #form="form" (ng-submit)="submit(form.value)">
   <input type="text" placeholder="Enter your name" ng-control="name">
   <input type="text" placeholder="Enter your email" ng-control="email">
   <h3>Languages</h3>
