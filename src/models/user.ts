@@ -1,19 +1,28 @@
+export interface UserConfig {
+  name: string;
+  email: string;
+  rating: number;
+  javascript: boolean;
+  ruby: boolean;
+  php: boolean;
+}
+
 export class User {
 
   name: string;
   email: string;
   rating: number;
 
-  constructor(userInfo:any) {
+  constructor(user: UserConfig) {
 
-    this.name = userInfo.name;
-    this.email = userInfo.email;
-    this.rating = this.calculateRating(userInfo);
+    this.name = user.name;
+    this.email = user.email;
+    this.rating = this.calculateRating(user);
 
   }
 
   // Method to calculate the user's points
-  private calculateRating(userInfo) {
+  private calculateRating(userInfo: UserConfig) {
     var rating = 0;
     if(userInfo.javascript) {
       rating += 30;
