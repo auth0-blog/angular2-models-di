@@ -14,7 +14,6 @@ export class User {
   rating: number;
 
   constructor(user: UserConfig) {
-
     this.name = user.name;
     this.email = user.email;
     this.rating = this.calculateRating(user);
@@ -38,11 +37,19 @@ export class User {
 
   save() {
     // HTTP request would go here
-    console.log(this.name, this.email, this.rating);
+    console.log("Sending user to server", this);
   }
 
-  get() {
-    console.log(this.name);
+  public static GetByName(name: String) {
+    // HTTP request would go here
+    return new User({
+      name: 'Gonto',
+      email: 'gonto@auth0.com',
+      javascript: true,
+      ruby: true,
+      rating: 42,
+      php: false
+    });
   }
 
 }

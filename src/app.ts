@@ -16,8 +16,10 @@ import {UserFactory} from './models/userFactory';
       <input type="checkbox" ng-control="javascript">JavaScript
       <input type="checkbox" ng-control="ruby">Ruby
       <input type="checkbox" ng-control="php">PHP
+      <br />
       <button>Submit</button>
     </form>
+    <button (click)="getUser()">Get User</button>
   `
 })
 
@@ -36,7 +38,7 @@ class UsersAppComponent {
   }
 
   getUser() {
-    this.user.get();
+    console.log("Getting user from server", User.GetByName("gonto"));
   }
 }
 
