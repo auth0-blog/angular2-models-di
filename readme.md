@@ -18,3 +18,7 @@ gulp play
 ```
 
 The app will be served at `localhost:9000`.
+
+## [Auth0](https://auth0.com)
+
+Brought to you by [Auth0](https://auth0.com)
