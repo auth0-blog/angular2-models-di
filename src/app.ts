@@ -1,6 +1,5 @@
 import {Component, View, bootstrap, bind, FORM_DIRECTIVES, Inject} from 'angular2/angular2';
 import {User, UserConfig} from './models/user';
-import {UserFactory} from './models/userFactory';
 
 @Component({
   selector: 'users'
@@ -25,21 +24,48 @@ import {UserFactory} from './models/userFactory';
 
 class UsersAppComponent {
 
-  userFactory: UserFactory;
-  user: any;
-  
-  constructor(userFactory: UserFactory) {  
-    this.userFactory = userFactory;
+  constructor() {  
+
   }
 
   submit(userInfo: UserConfig) {
-    this.user = this.userFactory.create(userInfo);
-    this.user.save();
+      // We instantiate the user class.
+      let user = new User();
+      user.name = userInfo.name;
+      user.email = userInfo.email;
+      user.rating = this.calculateRating(userInfo);
+      // This would be HTTP request
+      console.log(user);
   }
 
   getUser() {
-    console.log("Getting user from server", User.GetByName("gonto"));
+    // This would be an http request
+    let user = this.getUserFromRequest();
+    console.log(user);
+  }
+
+  getUserFromRequest() {
+    let user = new User();
+    user.name = "Gonto";
+    user.email = "gonto@auth0.com";
+    user.rating = 50;
+    return user;
+  }
+
+  // Method to calculate the user's points
+  calculateRating(userInfo: User) {
+    var rating = 0;
+    if(userInfo.javascript) {
+      rating += 30;
+    }
+    if(userInfo.ruby) {
+      rating += 20;
+    }
+    if(userInfo.php) {
+      rating += 50;
+    }
+    return rating;
   }
 }
 
-bootstrap(UsersAppComponent, [UserFactory]);
+bootstrap(UsersAppComponent, []);
