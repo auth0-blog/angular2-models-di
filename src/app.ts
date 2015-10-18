@@ -53,7 +53,7 @@ class UsersAppComponent {
   }
 
   // Method to calculate the user's points
-  calculateRating(userInfo: User) {
+  calculateRating(userInfo: UserConfig) {
     var rating = 0;
     if(userInfo.javascript) {
       rating += 30;
